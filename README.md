@@ -1,10 +1,11 @@
-# Foundation for Emails Template
+# Email templates 
 
-[![devDependency Status](https://david-dm.org/zurb/foundation-emails-template/dev-status.svg)](https://david-dm.org/zurb/foundation-emails-template#info=devDependencies)
+**Heb je een issue gevonden die niet gerelateerd is aan de template zelf gelieve dan een bug report aan te maken in de Foundation for Emails](http://github.com/zurb/foundation-emails/issues) repo.**
 
-**Please open all issues with this template on the main [Foundation for Emails](http://github.com/zurb/foundation-emails/issues) repo.**
+Onze email templates die worden gebruikt doorheen onze applicaties.
+Deze zijn gebouwd op basis van [Zurb Foundation]()
 
-This is the official starter project for [Foundation for Emails](http://foundation.zurb.com/emails), a framework for creating responsive HTML devices that work in any email client. It has a Gulp-powered build system with these features:
+## Features
 
 - Handlebars HTML templates with [Panini](http://github.com/zurb/panini)
 - Simplified HTML email syntax with [Inky](http://github.com/zurb/inky)
@@ -13,74 +14,82 @@ This is the official starter project for [Foundation for Emails](http://foundati
 - Built-in BrowserSync server
 - Full email inlining process
 
-## Installation
+## Installatie
 
-To use this template, your computer needs [Node.js](https://nodejs.org/en/) 0.12 or greater. The template can be installed with the Foundation CLI, or downloaded and set up manually.
+Om deze templates te gebruiken en of eraan te ontwikkelen moet de computer in kwestie ondersteund zijn met 
+[Node.js](https://nodejs.org/en/) versie 0.12 of hoger.
 
-### Using the CLI
+### Gebruik vanaf de CLI
 
-Install the Foundation CLI with this command:
+Installeer de Foundation CLI package met het volgende commando: 
 
 ```bash
 npm install foundation-cli --global
 ```
 
-Use this command to set up a blank Foundation for Emails project:
+Gebruik het volgende commando een leeg Foundation for Email project aan te maken:
 
 ```bash
 foundation new --framework emails
 ```
 
-The CLI will prompt you to give your project a name. The template will be downloaded into a folder with this name.
+De CLI omgeving zal je vragen voor een project naam. Om vervolgens de templates te downloaden naar een directory die
+de gegeven naam draagt.
 
-### Manual Setup
 
-To manually set up the template, first download it with Git:
+### Manuale installatie
+
+Voor het project manueel te installeren moet het eerst een clone binnen trekken van de repository. 
 
 ```bash
 git clone https://github.com/zurb/foundation-emails-template projectname
 ```
 
-Then open the folder in your command line, and install the needed dependencies:
+Vervolgens open je de map in uw CLI, en installeer je de nodige dependencies:
 
 ```bash
 cd projectname
 npm install
 ```
 
-## Build Commands
+## Generatie commando's
 
-Run `npm start` to kick off the build process. A new browser tab will open with a server pointing to your project files.
+Voer `npm start` uit om een genratie proces in gang te trekken. Een nieuw browser tab zal worden geopend met een server connectie die gericht is naar je project bestanden. 
 
-Run `npm run build` to inline your CSS into your HTML along with the rest of the build process.
+Voer `npm run build` om al je CSS als inline `style` attributen te weven in de html. Gevolgd door de rest van het generatie proces.
 
-Run `npm run litmus` to build as above, then submit to litmus for testing. *AWS S3 Account details required (config.json)*
+Voer `npm run litmus` uit om de bovenstaande vermelde generatie processen uit te voeren, Om vervolgens litmus te gebruiken als testing provider. *AWS S3 Account informatie is vereist (config.json)*
 
-Run `npm run mail` to build as above, then send to specified email address for testing. *SMTP server details required (config.json)*
+Voer `npm run mail` uit om de bovenstaande vermelde generatie processen uit te voeren, Daarnaast worden ook de templates naar een specifiek opgegeven email adres verzonden. *SMTP server informatie vereist (config.json)*
 
-Run `npm run zip` to build as above, then zip HTML and images for easy deployment to email marketing services. 
+Voer `npm run zip` uit om de bovenstaande vermelde generatie processen uit te voeren, Daarnaast worden ook alle template bestanden in een zip bestand comprimeerd voor snelle en gemakkelijke deployment naar Email Marketing Services. 
 
-### Speeding Up Your Build
+### Optimalizatie en versnelling van de generatie commando's
 
-If you create a lot of emails, your build can start to slow down, as each build rebuilds all of the emails in the
-repository. A simple way to keep it fast is to archive emails you no longer need by moving the pages into `src/pages/archive`.
-You can also move images that are no longer needed into `src/assets/img/archive`. The build will ignore pages and images that
-are inside the archive folder.
+Als u een hoop email templates moet genereren kan het proces vertraagd worden. Omdat elke generatie elke template vervangd en opnieuw compileerd. Vandaar dat er een simpele manier us ingebouwd om mails te archieveren. De mails die u niet langer nodig hebt kunnen verplaats worden naar de volgende map. `src/pages/archive`. 
 
-## Litmus Tests (config.json)
+U kunt ook het zelfde doen voor de images. De kunnen verplaatst worden naar de map. `src/assets/img/archieve`. 
 
-Testing in Litmus requires the images to be hosted publicly. The provided gulp task handles this by automating hosting to an AWS S3 account. Provide your Litmus and AWS S3 account details in the `example.config.json` and then rename to `config.json`. Litmus config, and `aws.url` are required, however if you follow the [aws-sdk suggestions](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html) you don't need to supply the AWS credentials into this JSON.
+Het generatie proces zal vervolgens alle bestanden in de `archive directories` negeren. 
+
+## Litmus Test service (config.json)
+
+Testing in Litmus vereist dat de image bestanden die gebruikt worden publiek gehost worden. Het meegeleverde gulp command gaat er automatisch aan uit dat de foto's op een AWS S3 account staan. Vandaar dat de gegegevens van Litmus en uw AWS S3 account gedefineerd moeten worden in het configuratie bestand. *(Zie `example.config.json`)*. 
+
+Vergeet ook niet de `example.config.json` te hernoemen naar `config.json`. 
+
+Litmus configuratie en `aws.url` zijn vereiste delen. Maar als de [aws-sdk suggesties](http://docs.aws.amazon.com/AWSJavaScriptSDK/guide/node-configuring.html) volgt hoeft u uw AWS credentials niet mee te geven aan de configuratie.
 
 ```json
 {
   "aws": {
     "region": "us-east-1",
-    "accessKeyId": "YOUR_ACCOUNT_KEY",
-    "secretAccessKey": "YOUR_ACCOUNT_SECRET",
+    "accessKeyId": "UW_ACCOUNT_SLEUTEL",
+    "secretAccessKey": "UW_ACCOUNT_WACHTWOORD",
     "params": {
-        "Bucket": "elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
+        "Bucket": "elasticbeanstalk-us-east-1-DIT_IS_EEN_VOORBEELD"
     },
-    "url": "https://s3.amazonaws.com/elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
+    "url": "https://s3.amazonaws.com/elasticbeanstalk-us-east-1-DIT_IS_EEN_VOORBEELD"
   },
   "litmus": {
     "username": "YOUR_LITMUS@EMAIL.com",
@@ -91,7 +100,9 @@ Testing in Litmus requires the images to be hosted publicly. The provided gulp t
 }
 ```
 
-## Manual email tests (config.json)
+## Manuele email tests (config.json)
+
+Ong. Gelijk aan de Litmus test cases, maar je kunt de email laten sturen naar een specifiek email adres. En ook de Litmus tests laten uitvoeren. Het enige wat u hoeft te doen is zijn de AWS S3 account details te plaatsen in de `config.json`. En vergeet ook niet de SMTP gegevens te definieeren van de SMTP server die u wenst te gebruiken. Het email adres waarnaar u de emails wilt verzeten kan ook configureerd worden in het bestand `package.json` of toegevoegd worden met een commando parameten. Bv. `npm run mail -- -to="email@adres.com"`
 
 Similar to the Litmus tests, you can have the emails sent to a specified email address. Just like with the Litmus tests, you will need to provide AWS S3 account details in `config.json`. You will also need to specify to details of an SMTP server. The email address to send to emails to can either by configured in the `package.json` file or added as a parameter like so: `npm run mail -- --to="example.com"`
 
@@ -102,7 +113,7 @@ Similar to the Litmus tests, you can have the emails sent to a specified email a
     "accessKeyId": "YOUR_ACCOUNT_KEY",
     "secretAccessKey": "YOUR_ACCOUNT_SECRET",
     "params": {
-        "Bucket": "elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
+        "Bucket": "elasticbeanstalk-us-east-1-DIT_IS_EEN_VOORBEELD"
     },
     "url": "https://s3.amazonaws.com/elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
   },
@@ -110,13 +121,13 @@ Similar to the Litmus tests, you can have the emails sent to a specified email a
     "to": [
       "example@domain.com"
     ],
-    "from": "Company name <info@company.com",
+    "from": "Bedrijf of persoons naam <naam@domain.com",
     "smtp": {
       "auth": {
-        "user": "example@domain.com",
+        "user": "naam@domain.com",
         "pass": "12345678"
       },
-      "host": "smtp.domain.com",
+      "host": "smtp.domein.com",
       "secureConnection": true,
       "port": 465
     }
@@ -124,7 +135,7 @@ Similar to the Litmus tests, you can have the emails sent to a specified email a
 }
 ```
 
-For a full list of Litmus' supported test clients(applications) see their [client list](https://litmus.com/emails/clients.xml).
+Voor een volledig lijst van clients (applicaties) zie hun [clients lijst](https://litmus.com/emails/clients.xml).
 
-**Caution:** AWS Service Fees will result, however, are usually very low do to minimal traffic. Use at your own discretion.
+**Waarschuwing:** Het gebruiken van een AWS Service zal leiden tot het betalen van micro bedragen. Maar deze zijn meestal vrij laag. Omdat alleen het minimale aantal data verkeer gebeurd over de verbinding. Gebruik is op eigen risico.
 
